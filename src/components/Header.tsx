@@ -1,8 +1,9 @@
 // src/app/components/Header.tsx
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
-import { Button } from "./ui/button";
+
 import Image from "next/image";
+import SearchBar from "./SearchBar";
 
 export default function Header() {
   return (
@@ -42,7 +43,7 @@ export default function Header() {
             </li>
           </ul>
         </nav>
-
+      <SearchBar />
         <ShoppingCart fill="white" className="hover:text-custom-button" />
       </div>
     </header>
