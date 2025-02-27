@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { Product } from '@/types/product';
+import Link from 'next/link';
 
 interface ProductCardProps {
   product: Product;
@@ -32,9 +33,11 @@ const ProductCard = ({ product }: ProductCardProps) => {
           </div>
         </div>
         <div className="mt-auto pt-4">
-          <button className="w-full bg-custom-button text-white py-2 rounded-md hover:bg-blue-950 transition-colors">
-            See Details
-          </button>
+          <Link href={`/product/${product.id}`} className="block">
+            <button className="w-full bg-custom-button text-white py-2 rounded-md hover:bg-blue-950 transition-colors">
+              See Details
+            </button>
+          </Link>
         </div>
       </div>
     </div>

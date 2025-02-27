@@ -47,7 +47,7 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="w-full max-w-lg bg-white p-6 rounded-xl">
+    <div className="w-full max-w-lg bg-gray-200 p-6 rounded-xl">
       <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
 
       <Form {...form}>
