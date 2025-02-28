@@ -1,11 +1,13 @@
-// src/app/components/Header.tsx
+"use client";
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
 
 import Image from "next/image";
 import SearchBar from "./SearchBar";
+import { useCart } from "@/context/CartContext";
 
 export default function Header() {
+  const { cartCount } = useCart();
   return (
     <header className="bg-custom-teal text-white shadow-md">
       <div className="container mx-auto flex flex-col items-center justify-between gap-4 p-4 sm:flex-row">
@@ -44,7 +46,14 @@ export default function Header() {
           </ul>
         </nav>
       <SearchBar />
-        <ShoppingCart fill="white" className="hover:text-custom-button" />
+      <li className="relative list-none">
+              <Link href="/cart" className="hover:text-gray-300">
+                <ShoppingCart className="w-6 h-6" />
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {cartCount}
+                </span>
+              </Link>
+            </li>
       </div>
     </header>
   );
