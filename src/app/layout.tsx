@@ -31,11 +31,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <CartProvider>
-        <Header />
-        <div className="flex flex-col w-full bg-white justify-start items-center row-start-2">
-          <main className="container flex-col mt-6">{children}</main>
-        </div>
-        <Footer />
+          <Header />
+          <div className="flex flex-grow w-full bg-white items-center justify-center">
+            <main className="container flex-col mt-6 px-4">{children}</main>
+          </div>
+          <Footer />
         </CartProvider>
       </body>
     </html>

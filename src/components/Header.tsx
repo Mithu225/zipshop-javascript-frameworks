@@ -35,14 +35,7 @@ export default function Header() {
                 Contact
               </Link>
             </li>
-            <li>
-              <Link
-                href="/product"
-                className="hover:text-custom-button transition"
-              >
-                Product
-              </Link>
-            </li>
+           
           </ul>
         </nav>
       <SearchBar />
