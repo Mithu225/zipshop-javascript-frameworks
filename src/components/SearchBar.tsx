@@ -62,7 +62,7 @@ export default function SearchBar() {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search for products..."
-        className="w-full pl-10 pr-3 py-2 border border-white rounded-md bg-transparent text-white placeholder:text-white focus:outline-none focus:ring-0 focus:border-white"
+        className="w-full pl-10 pr-3 py-2 border border-white rounded-md bg-transparent text-white placeholder:text-white focus:outline-none  focus:border-white"
       />
       <Search
         className="absolute left-3 top-1/2 -translate-y-1/2 text-white"
