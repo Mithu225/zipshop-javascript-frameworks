@@ -3,13 +3,22 @@
 import { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import { Input } from "./ui/input";
+import { useRouter } from "next/navigation";
 
 export default function SearchBar() {
   const [query, setQuery] = useState("");
+  const router = useRouter();
+  
   interface Product {
-    id: number;
+    id: string;
     title: string;
-    
+    description: string;
+    price: number;
+    discountedPrice: number;
+    image: {
+      url: string;
+      alt: string;
+    };
   }
 
   const [products, setProducts] = useState<Product[]>([]);
@@ -19,11 +28,8 @@ export default function SearchBar() {
       try {
         const response = await fetch("https://v2.api.noroff.dev/online-shop");
         const result = await response.json();
-
-         
-
         if (result?.data) {
-          setProducts(result.data); 
+          setProducts(result.data);
         }
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -37,8 +43,20 @@ export default function SearchBar() {
     product.title.toLowerCase().includes(query.toLowerCase())
   );
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (query.trim()) {
+      setQuery("");
+    }
+  };
+
+  const handleProductClick = (productId: string) => {
+    router.push(`/product/${productId}`);
+    setQuery(""); // Clear search after selection
+  };
+
   return (
-    <div className="relative w-1/3 max-w-lg">
+    <form onSubmit={handleSearch} className="relative w-1/3 max-w-lg">
       <Input
         type="text"
         value={query}
@@ -52,18 +70,22 @@ export default function SearchBar() {
       />
 
       {query && (
-        <div className="absolute top-full mt-2 w-full bg-gray-800 text-white rounded-md shadow-lg p-2">
+        <div className="absolute top-full mt-2 w-full bg-gray-800 text-white rounded-md shadow-lg p-2 z-50">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
-              <div key={product.id} className="p-2 border-b border-gray-600">
+              <div
+                key={product.id}
+                onClick={() => handleProductClick(product.id)}
+                className="p-2 border-b border-gray-600 hover:bg-gray-700 cursor-pointer"
+              >
                 {product.title}
               </div>
             ))
           ) : (
-            <p className="p-2">No products found</p>
+            <div className="p-2">No products found</div>
           )}
         </div>
       )}
-    </div>
+    </form>
   );
 }

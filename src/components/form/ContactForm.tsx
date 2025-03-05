@@ -6,6 +6,7 @@ import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useState } from "react";
 import {
   Form,
   FormControl,
@@ -29,6 +30,7 @@ const contactSchema = z.object({
 });
 
 export default function ContactForm() {
+  const [isSuccess, setIsSuccess] = useState(false);
   
   const form = useForm({
     resolver: zodResolver(contactSchema),
@@ -40,15 +42,26 @@ export default function ContactForm() {
     },
   });
 
-  
   function onSubmit(values: z.infer<typeof contactSchema>) {
     console.log("Form Data:", values);
-    alert("Message Sent Successfully!");
+    form.reset(); 
+    setIsSuccess(true); 
+    
+    
+    setTimeout(() => {
+      setIsSuccess(false);
+    }, 3000);
   }
 
   return (
     <div className="w-full max-w-lg bg-gray-200 p-6 rounded-xl">
       <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
+      
+      {isSuccess && (
+        <div className="mb-4 p-4 bg-green-100 text-green-700 rounded-md">
+          Message sent successfully!
+        </div>
+      )}
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -73,11 +86,7 @@ export default function ContactForm() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input
-                    type="email"
-                    placeholder="example@email.com"
-                    {...field}
-                  />
+                  <Input placeholder="john@example.com" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -91,7 +100,7 @@ export default function ContactForm() {
               <FormItem>
                 <FormLabel>Subject</FormLabel>
                 <FormControl>
-                  <Input placeholder="Subject" {...field} />
+                  <Input placeholder="How can we help?" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -105,14 +114,17 @@ export default function ContactForm() {
               <FormItem>
                 <FormLabel>Message</FormLabel>
                 <FormControl>
-                  <Textarea placeholder="Enter your message..." {...field} />
+                  <Textarea
+                    placeholder="Type your message here..."
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          <Button type="submit" className="w-full bg-custom-button">
+          <Button type="submit" className="w-full bg-custom-button hover:bg-blue-950">
             Send Message
           </Button>
         </form>
