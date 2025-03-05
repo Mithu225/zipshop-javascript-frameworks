@@ -1,6 +1,9 @@
+import ProductDetails from "@/components/ProductDetails";
+import { useParams } from "next/navigation";
 
-import ProductDetails from '@/components/ProductDetails';
-
-export default function ProductPage({ params }: { params: { id: string } }) {
+export default function ProductPage() {
+  const params = useParams<{ id: string }>();
+  
+  if (!params?.id) return null;
   return <ProductDetails productId={params.id} />;
 }
