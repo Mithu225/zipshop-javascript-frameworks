@@ -40,11 +40,18 @@ export default function CartContent() {
                   className="object-cover rounded"
                 />
               </div>
-              <div className="flex flex-row gap-8 p-4 items-center justify-center flex-1">
-                <h3 className="font-semibold">{item.product.title}</h3>
-                <p className="text-gray-600">x {item.quantity}</p>
-                <p className="font-semibold">${item.product.discountedPrice}</p>
-              </div>
+              <div className="flex flex-1 flex-col gap-2 px-4">
+    <h3 className="font-semibold text-left">{item.product.title}</h3>
+  </div>
+
+  <div className="flex items-center justify-center w-1/2">
+    <p className="text-gray-600 text-center">x {item.quantity}</p>
+  </div>
+
+  
+  <div className="w-24 text-right">
+    <p className="font-semibold pr-4">${item.product.discountedPrice}</p>
+  </div>
               <button 
                 onClick={() => removeFromCart(item.product.id)}
                 className="text-red-500 hover:text-red-700"

@@ -4,6 +4,7 @@ import { Product } from '@/types/product';
 import { Star } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 interface ProductDetailsProps {
   productId: string;
@@ -14,6 +15,7 @@ export default function ProductDetails({ productId }: ProductDetailsProps) {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -54,10 +56,15 @@ export default function ProductDetails({ productId }: ProductDetailsProps) {
     addToCart(product);
   };
 
+  const handleBuyMore = () => {
+   
+    router.push ('/');
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="bg-gray-100 rounded-lg shadow-lg overflow-hidden">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 p-6">
           <div className="relative h-[500px]">
             <Image
               src={product.image.url}
@@ -84,9 +91,16 @@ export default function ProductDetails({ productId }: ProductDetailsProps) {
 
             <p className="text-gray-600 mb-6">{product.description}</p>
 
-            <div className="flex gap-4 mt-auto">
-              <button onClick={handleAddToCart} className="flex-1 bg-custom-button text-white py-3 px-6 rounded-md hover:bg-blue-950 transition-colors">
+            <div className="flex  flex-row gap-4 mt-auto">
+              
+              <button onClick={handleAddToCart} className=" bg-custom-button text-white py-3 px-6 rounded-md hover:bg-blue-950 transition-colors">
                 Add to Cart
+              </button>
+              <button 
+                onClick={handleBuyMore}
+                className="p-2 bg-custom-button text-white py-2 rounded-md hover:bg-blue-950 transition-colors"
+              >
+                Back to home
               </button>
             </div>
           </div>
