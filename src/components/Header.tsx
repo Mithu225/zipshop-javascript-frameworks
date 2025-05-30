@@ -1,11 +1,14 @@
 "use client";
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
-
 import Image from "next/image";
 import SearchBar from "./SearchBar";
 import { useCart } from "@/context/CartContext";
 
+/**
+ * Header component displays the main navigation bar with logo, menu items, search bar, and cart
+ * @returns {JSX.Element} A header section with navigation elements
+ */
 export default function Header() {
   const { cartCount } = useCart();
   return (
@@ -23,7 +26,7 @@ export default function Header() {
         <nav>
           <ul className="flex flex-col sm:flex-row font-bold gap-4">
             <li>
-              <Link href="/" className="hover:text-custom-button  transition">
+              <Link href="/" className="hover:text-custom-button transition">
                 Home
               </Link>
             </li>
@@ -35,18 +38,17 @@ export default function Header() {
                 Contact
               </Link>
             </li>
-           
           </ul>
         </nav>
-      <SearchBar />
-      <li className="relative list-none">
-              <Link href="/cart" className="hover:text-gray-300">
-                <ShoppingCart className="w-6 h-6" />
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                  {cartCount}
-                </span>
-              </Link>
-            </li>
+        <SearchBar />
+        <li className="relative list-none">
+          <Link href="/cart" className="hover:text-gray-300">
+            <ShoppingCart className="w-6 h-6" />
+            <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              {cartCount}
+            </span>
+          </Link>
+        </li>
       </div>
     </header>
   );

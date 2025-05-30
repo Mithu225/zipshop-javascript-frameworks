@@ -11,6 +11,15 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    rules: {
+      "no-trailing-spaces": "error",
+      "no-multiple-empty-lines": ["error", { max: 1, maxEOF: 1, maxBOF: 0 }],
+      indent: ["error", 2],
+      "no-mixed-spaces-and-tabs": "error",
+      "eol-last": ["error", "always"],
+    },
+  },
 ];
 
 export default eslintConfig;

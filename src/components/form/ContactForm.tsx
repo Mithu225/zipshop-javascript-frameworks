@@ -29,9 +29,13 @@ const contactSchema = z.object({
     .min(10, { message: "Message must be at least 10 characters." }),
 });
 
+/**
+ * ContactForm component for handling user contact submissions
+ * @returns {JSX.Element} A form component with fields for user contact information
+ */
 export default function ContactForm() {
   const [isSuccess, setIsSuccess] = useState(false);
-  
+
   const form = useForm({
     resolver: zodResolver(contactSchema),
     defaultValues: {
@@ -42,12 +46,15 @@ export default function ContactForm() {
     },
   });
 
+  /**
+   * Handles form submission
+   * @param {z.infer<typeof contactSchema>} values - The form values validated by the schema
+   */
   function onSubmit(values: z.infer<typeof contactSchema>) {
     console.log("Form Data:", values);
-    form.reset(); 
-    setIsSuccess(true); 
-    
-    
+    form.reset();
+    setIsSuccess(true);
+
     setTimeout(() => {
       setIsSuccess(false);
     }, 3000);
@@ -56,7 +63,7 @@ export default function ContactForm() {
   return (
     <div className="w-full max-w-lg bg-gray-200 p-6 rounded-xl">
       <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
-      
+
       {isSuccess && (
         <div className="mb-4 p-4 bg-green-100 text-green-700 rounded-md">
           Message sent successfully!
@@ -72,7 +79,11 @@ export default function ContactForm() {
               <FormItem>
                 <FormLabel>Full Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="John Doe" {...field} className="bg-white " />
+                  <Input
+                    placeholder="John Doe"
+                    {...field}
+                    className="bg-white"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -86,7 +97,7 @@ export default function ContactForm() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="john@example.com" {...field}  />
+                  <Input placeholder="john@example.com" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -124,7 +135,10 @@ export default function ContactForm() {
             )}
           />
 
-          <Button type="submit" className="w-full bg-custom-button hover:bg-blue-950">
+          <Button
+            type="submit"
+            className="w-full bg-custom-button hover:bg-blue-950"
+          >
             Send Message
           </Button>
         </form>

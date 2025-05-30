@@ -1,9 +1,17 @@
-'use client';
+"use client";
 import Image from "next/image";
+
+/**
+ * Banner component displays the main promotional banner of the store
+ * @returns {JSX.Element} A banner section with image, text, and call-to-action button
+ */
 const Banner = () => {
+  /**
+   * Scrolls to the products section when the "Shop Now" button is clicked
+   */
   const handleShopNowClick = () => {
-    const element = document.getElementById('products');
-    element?.scrollIntoView({ behavior: 'smooth' });
+    const element = document.getElementById("products");
+    element?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -19,7 +27,7 @@ const Banner = () => {
               className="h-96 w-auto object-cover rounded-lg"
             />
             <div className="space-y-4">
-                <h3 className="text-2xl  text-gray-700">Sale season</h3>
+              <h3 className="text-2xl text-gray-700">Sale season</h3>
               <h1 className="text-4xl font-bold tracking-tight text-gray-900">
                 Welcome to Zip Store
               </h1>

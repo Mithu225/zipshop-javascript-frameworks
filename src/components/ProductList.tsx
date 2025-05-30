@@ -1,22 +1,33 @@
-'use client';
-import { useEffect, useState } from 'react';
-import ProductCard from './ProductCard';
-import { Product } from '@/types/product';
+"use client";
+import { useEffect, useState } from "react";
+import ProductCard from "./ProductCard";
+import { Product } from "@/types/product";
 
+/**
+ * ProductList component displays a grid of products fetched from the API
+ * @returns {JSX.Element} A grid of ProductCard components or loading/error states
+ */
 const ProductList = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    /**
+     * Fetches products from the API
+     * @async
+     * @function fetchProducts
+     * @throws {Error} When the API request fails
+     */
     const fetchProducts = async () => {
       try {
-        const response = await fetch('https://v2.api.noroff.dev/online-shop');
+        const response = await fetch("https://v2.api.noroff.dev/online-shop");
         const data = await response.json();
         setProducts(data.data);
         setLoading(false);
       } catch (err: unknown) {
-        const errorMessage = err instanceof Error ? err.message : 'Failed to fetch products';
+        const errorMessage =
+          err instanceof Error ? err.message : "Failed to fetch products";
         setError(errorMessage);
         setLoading(false);
       }

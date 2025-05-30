@@ -33,26 +33,25 @@ export default function CartContent() {
           {items.map((item) => (
             <div key={item.product.id} className="flex items-center justify-between p-4 bg-white w-1/2 rounded-lg shadow">
               <div className="relative w-24 h-24">
-                <Image 
-                  src={item.product.image.url} 
+                <Image
+                  src={item.product.image.url}
                   alt={item.product.title}
                   fill
                   className="object-cover rounded"
                 />
               </div>
               <div className="flex flex-1 flex-col gap-2 px-4">
-    <h3 className="font-semibold text-left">{item.product.title}</h3>
-  </div>
+                <h3 className="font-semibold text-left">{item.product.title}</h3>
+              </div>
 
-  <div className="flex items-center justify-center w-1/2">
-    <p className="text-gray-600 text-center">x {item.quantity}</p>
-  </div>
+              <div className="flex items-center justify-center w-1/2">
+                <p className="text-gray-600 text-center">x {item.quantity}</p>
+              </div>
 
-  
-  <div className="w-24 text-right">
-    <p className="font-semibold pr-4">${item.product.discountedPrice}</p>
-  </div>
-              <button 
+              <div className="w-24 text-right">
+                <p className="font-semibold pr-4">${item.product.discountedPrice}</p>
+              </div>
+              <button
                 onClick={() => removeFromCart(item.product.id)}
                 className="text-red-500 hover:text-red-700"
               >
@@ -63,13 +62,13 @@ export default function CartContent() {
           <div className="mt-6 text-right flex flex-col justify-end gap-4">
             <p className="text-xl font-bold">Total: ${total.toFixed(2)}</p>
             <div className="flex flex-row justify-end gap-4">
-              <button 
+              <button
                 onClick={handleCheckout}
                 className="p-2 bg-custom-button text-white py-2 rounded-md hover:bg-blue-950 transition-colors"
               >
                 Check out
               </button>
-              <button 
+              <button
                 onClick={handleBuyMore}
                 className="p-2 bg-custom-button text-white py-2 rounded-md hover:bg-blue-950 transition-colors"
               >

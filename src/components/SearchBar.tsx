@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 export default function SearchBar() {
   const [query, setQuery] = useState("");
   const router = useRouter();
-  
+
   interface Product {
     id: string;
     title: string;

@@ -1,11 +1,12 @@
 import Image from "next/image";
 
+/**
+ * Footer component displays the site footer with logo and copyright information
+ * @returns {JSX.Element} A footer section with logo and copyright text
+ */
 export default function Footer() {
   return (
-    <footer
-      className="flex items-center justify-center bg-custom-teal text-white
-     flex-col"
-    >
+    <footer className="flex items-center justify-center bg-custom-teal text-white flex-col">
       <div className="p-0">
         <Image
           src="/asset/ziplogo.png"
