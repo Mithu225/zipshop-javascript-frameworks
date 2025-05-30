@@ -62,7 +62,7 @@ export default function ProductDetails({ productId }: ProductDetailsProps) {
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }).map((_, index) => (
       <Star
-        key={index}
+        key={`star-${rating}-${index}`}
         className={`w-5 h-5 ${
           index < rating
             ? "fill-yellow-400 text-yellow-400"

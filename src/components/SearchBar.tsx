@@ -73,13 +73,13 @@ export default function SearchBar() {
         <div className="absolute top-full mt-2 w-full bg-gray-800 text-white rounded-md shadow-lg p-2 z-50">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
-              <div
+              <button
                 key={product.id}
                 onClick={() => handleProductClick(product.id)}
-                className="p-2 border-b border-gray-600 hover:bg-gray-700 cursor-pointer"
+                className="w-full text-left p-2 border-b border-gray-600 hover:bg-gray-700 cursor-pointer"
               >
                 {product.title}
-              </div>
+              </button>
             ))
           ) : (
             <div className="p-2">No products found</div>

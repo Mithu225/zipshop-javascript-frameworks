@@ -15,6 +15,7 @@ const eslintConfig = [
     rules: {
       "no-trailing-spaces": "error",
       "no-multiple-empty-lines": ["error", { max: 1, maxEOF: 1, maxBOF: 0 }],
+      "no-multi-spaces": "error",
       indent: ["error", 2],
       "no-mixed-spaces-and-tabs": "error",
       "eol-last": ["error", "always"],
